@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import subprocess
 
 def get_args():
     parser = argparse.ArgumentParser(description='Generate a HTML page to display a YAML file')
@@ -16,7 +17,11 @@ def write_html(html_filename, html):
     with open(html_filename, 'w') as f:
         f.write(html)
 
-def create_html(yaml):
+def get_repo_link():
+    cmd = subprocess.run(['git', 'remote', 'get-url', 'origin'], stdout=subprocess.PIPE)
+    return cmd.stdout.decode('utf-8').strip()[:-len('.git')]
+
+def create_html(yaml, repo_link):
     return r'''<html>
   <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
@@ -28,7 +33,7 @@ def create_html(yaml):
     <pre id="yaml"></pre>
     <footer>
       This site is open source.
-      <a href="https://github.com/longztian/resume" class="hljs-link"">Improve this page</a>.
+      <a href="''' + repo_link + r'''" class="hljs-link">Improve this page</a>.
     </footer>
     <script>
       const re = /^( *)(- )?([\w ]*\w:)?(.*)$/
@@ -47,13 +52,15 @@ def create_html(yaml):
       document.getElementById('yaml').innerHTML = html
     </script>
   </body>
-</html>
-'''
+</html>'''
 
-if __name__ == '__main__':
+def main():
     args = get_args()
     yaml_file = args.yaml
     html_file = args.html
     yaml = read_yaml(yaml_file)
-    html = create_html(yaml)
+    html = create_html(yaml, get_repo_link())
     write_html(html_file, html)
+
+if __name__ == '__main__':
+    main()
