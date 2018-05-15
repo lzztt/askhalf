@@ -10,3 +10,5 @@ bash yaml_to_html.sh < resume_long.yaml > resume_long.html
 ```bash
 python3 yaml_to_html.py --yaml=resume_long.yaml --html=resume_long.html
 ```
+
+The output webpage: https://longztian.github.io/resume/resume_long.html
