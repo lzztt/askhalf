@@ -21,13 +21,15 @@ def create_html(yaml):
   <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
     <script>
-      const yaml = `
-''' + yaml + r'''
-`
+      const yaml = `''' + yaml + r'''`
     </script>
   </head> 
-  <body class="hljs" style="font-size: 1.1rem; margin: 0;">
+  <body class="hljs" style="margin: 0; padding: 1rem; font: 1.1rem monospace;">
     <pre id="yaml"></pre>
+    <footer>
+      This site is open source.
+      <a href="https://github.com/longztian/resume" class="hljs-link"">Improve this page</a>.
+    </footer>
     <script>
       const re = /^( *)(- )?([\w ]*\w:)?(.*)$/
       const html = yaml.split('\n').map(line => {
@@ -42,7 +44,7 @@ def create_html(yaml):
           return groups[1] + groups[2] + groups[3] + groups[4]
       }).join('\n')
 
-      document.getElementById("yaml").innerHTML = html
+      document.getElementById('yaml').innerHTML = html
     </script>
   </body>
 </html>
