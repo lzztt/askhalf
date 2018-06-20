@@ -34,9 +34,12 @@ def create_html(yaml, repo_link):
     const yaml = `''' + yaml + r'''`
   </script>
   <style>
-    @media (min-width: 1440px) {
+    @media screen and (min-width: 1440px) {
       .container-fluid {
         max-width: 1440px;
+        padding: 15px;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
       }
     }
   </style>
