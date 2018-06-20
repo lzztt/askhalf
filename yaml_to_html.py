@@ -33,10 +33,17 @@ def create_html(yaml, repo_link):
   <script>
     const yaml = `''' + yaml + r'''`
   </script>
+  <style>
+    @media (min-width: 1440px) {
+      .container-fluid {
+        max-width: 1440px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <div class="container my-3" style="font-family: Courier New, Courier, monospace;">
+  <div class="container-fluid my-3" style="font-family: Courier New, Courier, monospace;">
     <div id="yaml"></div>
     <footer class="text-secondary border-top mt-4 py-2" style="font-size: 0.9rem">
       This site is open source.
