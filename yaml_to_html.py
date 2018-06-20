@@ -22,36 +22,47 @@ def get_repo_link():
     return cmd.stdout.decode('utf-8').strip()[:-len('.git')]
 
 def create_html(yaml, repo_link):
-    return r'''<html>
-  <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
-    <script>
-      const yaml = `''' + yaml + r'''`
-    </script>
-  </head> 
-  <body class="hljs" style="margin: 0; padding: 1rem; font: 1.1rem monospace;">
-    <pre id="yaml"></pre>
-    <footer>
-      This site is open source.
-      <a href="''' + repo_link + r'''" class="hljs-link">Improve this page</a>.
-    </footer>
-    <script>
-      const re = /^( *)(- )?([\w ]*\w:)?(.*)$/
-      const html = yaml.split('\n').map(line => {
-          groups = re.exec(line)
-          if (!groups[1]) {
-              groups[1] = ''
-          }
-          groups[2] = groups[2] ? `<span class="hljs-bullet">${groups[2]}</span>` : ''
-          groups[3] = groups[3] ? `<span class="hljs-attr">${groups[3]}</span>` : ''
-          groups[4] = groups[4] ? `<span class="hljs-string">${groups[4]}</span>` : ''
-      
-          return groups[1] + groups[2] + groups[3] + groups[4]
-      }).join('\n')
+    return r'''<!doctype html>
+<html lang="en">
 
-      document.getElementById('yaml').innerHTML = html
-    </script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <title>Longzhang Tian's resume</title>
+  <script>
+    const yaml = `''' + yaml + r'''`
+  </script>
+</head>
+
+<body>
+  <div class="container my-3" style="font-family: Courier New, Courier, monospace;">
+    <div id="yaml"></div>
+    <footer class="text-secondary border-top mt-4 py-2" style="font-size: 0.9rem">
+      This site is open source.
+      <a href="''' + repo_link + r'''">Improve this page</a>.
+    </footer>
+  </div>
+
+  <script>
+    const re = /^( *)(- )?([\w ]*\w:)?(.*)$/
+    const html = yaml.split('\n').map(line => {
+        groups = re.exec(line)
+        if (!groups[1]) {
+            groups[1] = ''
+        } else {
+            groups[1] = '&nbsp;'.repeat(groups[1].length);
+        }
+        groups[2] = groups[2] ? `<span class="text-primary">${groups[2]}</span>` : ''
+        groups[3] = groups[3] ? `<span class="text-success">${groups[3]}</span>` : ''
+        groups[4] = groups[4] ? `<span class="text-dark">${groups[4]}</span>` : ''
+        return groups[1] + groups[2] + groups[3] + groups[4] + '<br>'
+    }).join('')
+
+    document.getElementById('yaml').innerHTML = html
+  </script>
+</body>
+
 </html>'''
 
 def main():
