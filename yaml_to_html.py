@@ -79,7 +79,7 @@ def main():
     args = get_args()
     yaml_file = args.yaml
     html_file = args.html
-    yaml = read_yaml(yaml_file)
+    yaml = read_yaml(yaml_file).strip()
     html = create_html(yaml, get_repo_link())
     write_html(html_file, html)
 
