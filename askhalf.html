@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>ASK HALF</title>
-    <script>
-        const askhalf = `ASK: ask questions, ask for help, pursue a clear goal and share it
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <title>ASK HALF</title>
+  <script>
+    const yaml = `ASK: # ask questions, ask for help, pursue a clear goal and share it
   - Act:
     - life is short, fearless, initiate, finish
     - learn and evolve while doing
@@ -21,7 +21,7 @@
     - be helpful
     - be kind to others and yourself
 
-HALF: open, balanced, stay hugry, stay humble, connect and collaborate
+HALF: # open, humble, balanced, connect and collaborate
   - Humble:
     - not proud, not arrogant, share ideas and value feedbacks
     - open, flexible, adaptable
@@ -38,51 +38,46 @@ HALF: open, balanced, stay hugry, stay humble, connect and collaborate
     - enjoyable, interesting, creative
     - passionate about
     - smile, have fun, with love`
-    </script>
-    <style>
-        body {font-family: "Courier New", Courier, monospace;}
-    </style>
+  </script>
+  <style>
+    body {
+      font-family: "Courier New", Courier, monospace;
+    }
+    .container span {
+      white-space: pre-wrap;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <header class="my-3" style="font-size: 1.2rem">
-            <span class="bg-success text-white p-1 pl-2 border border-success rounded-left">Ask</span><span class="bg-white text-success p-1 pr-2 border border-success rounded-right">Half</span>
-            <span class="p-1 font-weight-bold text-capitalize d-block d-sm-inline">Be your best self. Better journey together.</span>
-        </header>
-        <div id="askhalf"></div>
-        <footer class="text-secondary border-top mt-4 py-2" style="font-size: 0.9rem">
-            Created by <a target="_blank" href="https://www.linkedin.com/in/lzt/">Longzhang Tian</a>.<br>
-            This work is licensed under a <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-        </footer>
-    </div>
+  <div class="container">
+    <header class="my-3" style="font-size: 1.2rem">
+      <span class="bg-success text-white p-1 pl-2 border border-success rounded-left">Ask</span><span class="bg-white text-success p-1 pr-2 border border-success rounded-right">Half</span>
+      <span class="p-1 text-capitalize d-block d-sm-inline">Be your best self. Better journey together.</span>
+    </header>
+    <div id="yaml"></div>
+    <footer class="text-black-50 border-top mt-4 py-2" style="font-size: 0.9rem">
+      Created by <a target="_blank" href="https://www.linkedin.com/in/lzt/">Longzhang Tian</a>.<br>
+      This work is licensed under a <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+    </footer>
+  </div>
 
-    <script>
-        const re = /^( *)(- )?([\w ]*\w:)?(.*)$/
-        const html = askhalf.split('\n').map(line => {
-            groups = re.exec(line)
-            if (!groups[1]) {
-                groups[1] = ''
-            } else {
-                groups[1] = '&nbsp;'.repeat(groups[1].length);
-            }
-            groups[2] = groups[2] ? `<span class="text-primary">${groups[2]}</span>` : ''
-            groups[3] = groups[3] ? `<span class="text-success font-weight-bold">${groups[3]}</span>` : ''
-            groups[4] = groups[4] ? `<span class="text-dark">${groups[4]}</span>` : ''
+  <script>
+    const re = /( *)(- )?([\w ]*\w: *)?(\[)?([^#\[\]]*)?(\])?(#.*)?/
+    const html = yaml.split('\n').map(line => {
+        groups = re.exec(line)
+        groups[1] = groups[1] ? `<span>${groups[1]}</span>` : ''
+        groups[2] = groups[2] ? `<span class="text-primary">${groups[2]}</span>` : ''
+        groups[3] = groups[3] ? `<span class="text-success">${groups[3]}</span>` : ''
+        groups[4] = groups[4] ? `<span class="text-black-50">${groups[4]}</span>` : ''
+        groups[5] = groups[5] ? `<span class="text-dark">${groups[5]}</span>` : ''
+        groups[6] = groups[6] ? `<span class="text-black-50">${groups[6]}</span>` : ''
+        groups[7] = groups[7] ? `<span class="text-black-50">${groups[7]}</span>` : ''
+        return groups.slice(1, 8).join('')
+    }).join('<br>')
 
-            return groups[1] + groups[2] + groups[3] + groups[4] + '<br>'
-        }).join('')
-        document.getElementById('askhalf').innerHTML = html
-    </script>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-36671672-4"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-36671672-4');
-    </script>
+    document.getElementById('yaml').innerHTML = html
+  </script>
 </body>
 
 </html>

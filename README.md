@@ -1,11 +1,18 @@
-# resume
-build a resume from YAML to HTML
+# Core Values: ASK HALF
+- ASK
+    - <ins>A</ins>ct
+    - <ins>S</ins>imple
+    - <ins>K</ins>ind
+- HALF
+    - <ins>H</ins>umble
+    - <ins>A</ins>ware
+    - <ins>L</ins>ess
+    - <ins>F</ins>un
 
-## First version
-display the YAML file as it is, with syntax highlighting.
+## Build the web page
 
 ```bash
-python3 yaml_to_html.py --yaml=resume_long.yaml --html=resume_long.html
+python3 yaml_to_html.py --yaml=askhalf.yaml --html=askhalf.html
 ```
 
-The output webpage: https://longztian.github.io/resume/resume_long.html
+The output webpage: https://longztian.github.io/askhalf/askhalf.html

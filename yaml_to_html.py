@@ -28,32 +28,31 @@ def create_html(yaml, repo_link):
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <title>Longzhang Tian's resume</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <title>ASK HALF</title>
   <script>
     const yaml = `''' + yaml + r'''`
   </script>
   <style>
-    @media screen and (min-width: 1600px) {
-      .container-fluid {
-        max-width: 1400px;
-        padding: 15px;
-        border: 1px solid #dee2e6;
-        border-radius: 8px;
-      }
+    body {
+      font-family: "Courier New", Courier, monospace;
     }
-    .container-fluid span {
+    .container span {
       white-space: pre-wrap;
     }
   </style>
 </head>
 
 <body>
-  <div class="container-fluid my-3" style="font-family: Courier New, Courier, monospace;">
+  <div class="container">
+    <header class="my-3" style="font-size: 1.2rem">
+      <span class="bg-success text-white p-1 pl-2 border border-success rounded-left">Ask</span><span class="bg-white text-success p-1 pr-2 border border-success rounded-right">Half</span>
+      <span class="p-1 text-capitalize d-block d-sm-inline">Be your best self. Better journey together.</span>
+    </header>
     <div id="yaml"></div>
     <footer class="text-black-50 border-top mt-4 py-2" style="font-size: 0.9rem">
-      This site is open source.
-      <a href="''' + repo_link + r'''">Improve this page</a>.
+      Created by <a target="_blank" href="https://www.linkedin.com/in/lzt/">Longzhang Tian</a>.<br>
+      This work is licensed under a <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
     </footer>
   </div>
 
