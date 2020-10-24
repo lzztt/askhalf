@@ -15,4 +15,4 @@
 python3 yaml_to_html.py --yaml=askhalf.yaml --html=askhalf.html
 ```
 
-The output webpage: https://longztian.github.io/askhalf/askhalf.html
+The output webpage: https://lzztt.github.io/askhalf/askhalf.html
